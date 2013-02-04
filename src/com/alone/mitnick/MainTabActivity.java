@@ -28,34 +28,31 @@ public class MainTabActivity extends TabActivity {
         main_tab_new_message.setVisibility(View.VISIBLE);
         main_tab_new_message.setText("10");
         
-        tabHost=this.getTabHost();
+        tabHost = this.getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
         
-        intent=new Intent().setClass(this, MainActivity.class);
-        spec=tabHost.newTabSpec("首页").setIndicator("首页").setContent(intent);
+        intent = new Intent().setClass(this, MainActivity.class);
+        spec = tabHost.newTabSpec("首页").setIndicator("首页").setContent(intent);
         tabHost.addTab(spec);
         
-        intent=new Intent().setClass(this,MoreActivity.class);
-        spec=tabHost.newTabSpec("分类").setIndicator("分类").setContent(intent);
+        intent = new Intent().setClass(this,HomeActivity.class);
+        spec = tabHost.newTabSpec("分类").setIndicator("分类").setContent(intent);
         tabHost.addTab(spec);
         
-        intent=new Intent().setClass(this, MoreActivity.class);
+        intent = new Intent().setClass(this, MoreActivity.class);
         spec=tabHost.newTabSpec("喜欢").setIndicator("喜欢").setContent(intent);
         tabHost.addTab(spec);
         
-     
-        intent=new Intent().setClass(this, MoreActivity.class);
-        spec=tabHost.newTabSpec("设置").setIndicator("设置").setContent(intent);
+        intent = new Intent().setClass(this, MoreActivity.class);
+        spec = tabHost.newTabSpec("设置").setIndicator("设置").setContent(intent);
         tabHost.addTab(spec);
         tabHost.setCurrentTab(0);
         
         RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.main_tab_group);
         radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
         	@Override
         	public void onCheckedChanged(RadioGroup group, int checkedId) {
-        		// TODO Auto-generated method stub
         		switch (checkedId) {
         		case R.id.radio_button0:
         			tabHost.setCurrentTabByTag("首页");

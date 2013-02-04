@@ -37,6 +37,10 @@
             android:name="com.alone.mitnick.MoreActivity"
             android:label="@string/title_activity_more" >
         </activity>
+        <activity
+            android:name="com.alone.mitnick.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
     </application>
 
 </manifest>

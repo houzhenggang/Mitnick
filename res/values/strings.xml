@@ -13,5 +13,6 @@
     <string name="title_activity_main_tab">MainTabActivity</string>
     <string name="title_activity_more">MoreActivity</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
 
 </resources>
