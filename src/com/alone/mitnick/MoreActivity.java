@@ -7,7 +7,6 @@ import com.alone.mitnick.view.CornerListView;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -62,12 +61,6 @@ public class MoreActivity extends Activity {
 				System.out.println("1");
 			}
 		}
-	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_more, menu);
-		return true;
 	}
 
 }

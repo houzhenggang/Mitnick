@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.alone.mitnick.taobao.TaoBaoKeAPI;
-import com.alone.mitnick.view.ImageDownLoadAsyncTask;
-import com.alone.mitnick.view.LazyScrollView;
-
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
@@ -21,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.alone.mitnick.view.ImageDownLoadAsyncTask;
+import com.alone.mitnick.view.LazyScrollView;
 
 public class HomeActivity extends Activity implements LazyScrollView.OnScrollListener{
 
@@ -44,6 +43,8 @@ public class HomeActivity extends Activity implements LazyScrollView.OnScrollLis
 	private int item_width;// 每一个item的宽度
 	private final String file = "images";
 	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,8 +58,6 @@ public class HomeActivity extends Activity implements LazyScrollView.OnScrollLis
 		}
 		// 第一次加载
 		addImage(current_page, count);
-		TaoBaoKeAPI api = new TaoBaoKeAPI();
-		api.getItemcats();
 	}
 	
 	/***

@@ -55,7 +55,6 @@ public class LazyScrollView extends ScrollView{
 						if (onScrollListener != null) {
 							onScrollListener.onBottom();
 						}
-
 					} else if (getScrollY() == 0) {
 						if (onScrollListener != null) {
 							onScrollListener.onTop();
