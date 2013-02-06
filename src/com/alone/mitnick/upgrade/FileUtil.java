@@ -3,6 +3,8 @@ package com.alone.mitnick.upgrade;
 import java.io.File;
 import java.io.IOException;
 
+import com.alone.mitnick.MyApplication;
+
 import android.os.Environment;
 
 
@@ -20,7 +22,7 @@ public class FileUtil {
 	 */
 	public static void createFile(String name) {
 		if (android.os.Environment.MEDIA_MOUNTED.equals(android.os.Environment.getExternalStorageState())) {
-			updateDir = new File(Environment.getExternalStorageDirectory() + "/" + UpgradeApplication.downloadDir);
+			updateDir = new File(Environment.getExternalStorageDirectory() + "/" + MyApplication.downloadDir);
 			updateFile = new File(updateDir + "/" + name + ".apk");
 			if (!updateDir.exists()) {
 				updateDir.mkdirs();

@@ -7,7 +7,7 @@
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />
 
     <application
-        android:name="com.alone.mitnick.upgrade.UpgradeApplication"
+        android:name="com.alone.mitnick.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -26,8 +26,6 @@
         <activity android:name="com.alone.mitnick.MainTabActivity" android:label="@string/title_activity_main_tab"></activity>
         <activity android:name="com.alone.mitnick.MoreActivity" android:label="@string/title_activity_more"></activity>
         <activity android:name="com.alone.mitnick.HomeActivity" android:label="@string/title_activity_home"></activity>
-            
-        <activity android:name=".UpgradeActivity" />
         
         <service android:name="com.alone.mitnick.upgrade.UpdateService"></service>
         

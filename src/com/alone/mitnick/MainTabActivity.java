@@ -1,7 +1,6 @@
 package com.alone.mitnick;
 
 import com.alone.mitnick.upgrade.UpdateService;
-import com.alone.mitnick.upgrade.UpgradeApplication;
 
 import android.app.AlertDialog;
 import android.app.TabActivity;
@@ -89,15 +88,15 @@ public class MainTabActivity extends TabActivity {
 	}
 	
 	
-	private UpgradeApplication upgradeApplication;
+	private MyApplication application;
 	/***
 	 * 
 	 * 检查是否更新版本
 	 * 
 	 */
 	public void checkVersion() {
-		upgradeApplication = (UpgradeApplication) getApplication();
-		if (UpgradeApplication.localVersion < UpgradeApplication.serverVersion) {
+		application = (MyApplication) getApplication();
+		if (MyApplication.localVersion < MyApplication.serverVersion) {
 			// 发现新版本，提示用户更新
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
 			alert.setTitle("软件升级").setMessage("发现新版本,建议立即更新使用.").setPositiveButton("更新",new DialogInterface.OnClickListener() {
