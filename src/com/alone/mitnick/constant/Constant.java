@@ -21,4 +21,9 @@ public class Constant {
 	 * TaoBao API url
 	 */
 	public static final String TAOBAO_APP_API_URL = "http://gw.api.taobao.com/router/rest";
+	
+	/**
+	 * 
+	 */
+	public static final String TAG = "Alone";
 }

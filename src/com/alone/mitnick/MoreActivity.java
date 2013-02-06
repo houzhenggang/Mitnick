@@ -3,14 +3,14 @@ package com.alone.mitnick;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.alone.mitnick.view.CornerListView;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SimpleAdapter;
+
+import com.alone.mitnick.view.CornerListView;
 
 public class MoreActivity extends Activity {
 	
@@ -22,9 +22,7 @@ public class MoreActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_more);
 		getDataSource1();
-		SimpleAdapter adapter1 = new SimpleAdapter(this, map_list1,
-				R.layout.simple_list_item_1, new String[] { "item" },
-				new int[] { R.id.item_title });
+		SimpleAdapter adapter1 = new SimpleAdapter(this, map_list1,R.layout.simple_list_item_1, new String[] { "item" },new int[] { R.id.item_title });
 		
 		mListView = (CornerListView) findViewById(R.id.list1);
 		mListView.setAdapter(adapter1);

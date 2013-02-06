@@ -1,5 +1,7 @@
 package com.alone.mitnick.view;
 
+import com.alone.mitnick.constant.Constant;
+
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -55,10 +57,10 @@ public class PwsListView extends ListView {
 		public boolean onScroll(MotionEvent e1, MotionEvent e2,
 				float distanceX, float distanceY) {
 			if (Math.abs(distanceY) >= Math.abs(distanceX)) {
-				Log.e("jj", "上下....");
+				Log.e(Constant.TAG, "上下....");
 				return true;
 			}
-			Log.e("jj", "左右....");
+			Log.e(Constant.TAG, "左右....");
 			return false;
 		}
 

@@ -16,7 +16,6 @@ import android.widget.ScrollView;
  */
 public class LazyScrollView extends ScrollView{
 	
-	private static final String tag = "LazyScrollView";
 	private Handler handler;
 	private View view;
 	

@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -18,10 +19,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alone.mitnick.constant.Constant;
+import com.alone.mitnick.taobao.TaobaoGetShop;
 import com.alone.mitnick.view.ImageDownLoadAsyncTask;
 import com.alone.mitnick.view.LazyScrollView;
+import com.taobao.top.android.TopAndroidClient;
+import com.taobao.top.android.auth.AccessToken;
+import com.taobao.top.android.auth.AuthActivity;
+import com.taobao.top.android.auth.AuthError;
+import com.taobao.top.android.auth.AuthException;
+import com.taobao.top.android.auth.AuthorizeListener;
 
-public class HomeActivity extends Activity implements LazyScrollView.OnScrollListener{
+public class HomeActivity extends AuthActivity implements LazyScrollView.OnScrollListener{
 
 	private LazyScrollView lazyScrollView;
 	private LinearLayout waterfall_container;
@@ -43,10 +52,12 @@ public class HomeActivity extends Activity implements LazyScrollView.OnScrollLis
 	private int item_width;// 每一个item的宽度
 	private final String file = "images";
 	
-	
+	private TopAndroidClient client = TopAndroidClient.getAndroidClientByAppKey(Constant.APP_KEY);
+	private Long userId;
+	private String nick;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initView();
 		assetManager = this.getAssets();
@@ -58,6 +69,7 @@ public class HomeActivity extends Activity implements LazyScrollView.OnScrollLis
 		}
 		// 第一次加载
 		addImage(current_page, count);
+		
 	}
 	
 	/***
@@ -128,7 +140,8 @@ public class HomeActivity extends Activity implements LazyScrollView.OnScrollLis
 		imageView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(HomeActivity.this,"您点击了" + v.getTag() + "个Item", Toast.LENGTH_SHORT).show();
+				TaobaoGetShop taobaoGetShop = new TaobaoGetShop();
+				Toast.makeText(HomeActivity.this,"您点击了" + v.getTag() + "个Item!\n\r"+taobaoGetShop.getShopList(client), Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -186,5 +199,43 @@ public class HomeActivity extends Activity implements LazyScrollView.OnScrollLis
 	@Override
 	public void onScroll() {
 		
+	}
+
+	
+	@Override
+	protected TopAndroidClient getTopAndroidClient() {
+		return client;
+	}
+
+	@Override
+	protected AuthorizeListener getAuthorizeListener() {
+		return new AuthorizeListener() {
+			
+			@Override
+			public void onError(AuthError e) {
+				Log.e(Constant.TAG, e.getErrorDescription());
+			}
+			
+			@Override
+			public void onComplete(AccessToken accessToken) {
+				String id = accessToken.getAdditionalInformation().get(AccessToken.KEY_SUB_TAOBAO_USER_ID);
+				if(id == null){
+					id=accessToken.getAdditionalInformation().get(AccessToken.KEY_TAOBAO_USER_ID);
+				}
+				HomeActivity.this.userId = Long.parseLong(id);
+				nick = accessToken.getAdditionalInformation().get(AccessToken.KEY_SUB_TAOBAO_USER_NICK);
+				if(nick == null){
+					nick = accessToken.getAdditionalInformation().get(AccessToken.KEY_TAOBAO_USER_NICK);
+				}
+				String r2_expires = accessToken.getAdditionalInformation().get(AccessToken.KEY_R2_EXPIRES_IN);
+				Date start = accessToken.getStartDate();
+				Date end = new Date(start.getTime() + Long.parseLong(r2_expires) * 1000L);
+			}
+			
+			@Override
+			public void onAuthException(AuthException e) {
+				Log.e(Constant.TAG, e.getMessage());
+			}
+		};
 	}
 }

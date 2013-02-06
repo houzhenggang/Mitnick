@@ -1,7 +1,5 @@
 package com.alone.mitnick;
 
-import com.alone.mitnick.upgrade.UpdateService;
-
 import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
@@ -14,6 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
 import android.widget.TextView;
+
+import com.alone.mitnick.upgrade.UpdateService;
 
 @SuppressWarnings("deprecation")
 public class MainTabActivity extends TabActivity {

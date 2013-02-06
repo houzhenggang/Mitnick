@@ -1,5 +1,7 @@
 package com.alone.mitnick;
 
+import com.taobao.top.android.TopAndroidClient;
+
 import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -26,6 +28,8 @@ public class MyApplication extends Application {
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
+		//淘宝SDK
+		TopAndroidClient.registerAndroidClient(getApplicationContext(), "21238429", "e8183d1cd8a967546bac5b6404cb9b38", "callback://authresult");
 	}
 
 }

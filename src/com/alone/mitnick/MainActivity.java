@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.alone.mitnick.view.PwsListView;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,25 +15,21 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.alone.mitnick.constant.Constant;
+import com.alone.mitnick.view.PwsListView;
 
 /**
  * 
@@ -91,7 +85,7 @@ public class MainActivity extends Activity {
 					image_id[i]);
 			Bitmap bitmap2 = getBitmap(bitmap, window_width);
 			frameheight = bitmap2.getHeight();// 获取要显示的高度
-			Log.e("jj", "frameheight=" + frameheight);
+			Log.e(Constant.TAG, "frameheight=" + frameheight);
 			imageView.setImageBitmap(bitmap2);
 			arrayList.add(imageView);
 		}
