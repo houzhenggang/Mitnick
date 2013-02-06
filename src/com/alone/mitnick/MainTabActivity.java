@@ -1,8 +1,13 @@
 package com.alone.mitnick;
 
-import android.os.Bundle;
+import com.alone.mitnick.upgrade.UpdateService;
+import com.alone.mitnick.upgrade.UpgradeApplication;
+
+import android.app.AlertDialog;
 import android.app.TabActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +21,7 @@ public class MainTabActivity extends TabActivity {
 	
 	private TabHost tabHost;
 	private TextView main_tab_new_message;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +77,8 @@ public class MainTabActivity extends TabActivity {
         		}
         	}
 		});
+        //检查更新
+        checkVersion();
 	}
 
 	
@@ -79,5 +87,34 @@ public class MainTabActivity extends TabActivity {
 		getMenuInflater().inflate(R.menu.activity_main_tab, menu);
 		return true;
 	}
-
+	
+	
+	private UpgradeApplication upgradeApplication;
+	/***
+	 * 
+	 * 检查是否更新版本
+	 * 
+	 */
+	public void checkVersion() {
+		upgradeApplication = (UpgradeApplication) getApplication();
+		if (UpgradeApplication.localVersion < UpgradeApplication.serverVersion) {
+			// 发现新版本，提示用户更新
+			AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			alert.setTitle("软件升级").setMessage("发现新版本,建议立即更新使用.").setPositiveButton("更新",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int which) {
+						// 开启更新服务UpdateService
+						// 这里为了把update更好模块化，可以传一些updateService依赖的值
+						// 如布局ID，资源ID，动态获取的标题,这里以app_name为例
+						Intent updateIntent = new Intent(MainTabActivity.this,UpdateService.class);
+						updateIntent.putExtra("app_name",getResources().getString(R.string.app_name));
+						startService(updateIntent);
+					}
+				}).setNegativeButton("取消",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int which) {
+						dialog.dismiss();
+					}
+				});
+			alert.create().show();
+		}
+	}
 }
