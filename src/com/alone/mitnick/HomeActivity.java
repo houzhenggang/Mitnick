@@ -141,7 +141,7 @@ public class HomeActivity extends AuthActivity implements LazyScrollView.OnScrol
 			@Override
 			public void onClick(View v) {
 				TaobaoGetShop taobaoGetShop = new TaobaoGetShop();
-				Toast.makeText(HomeActivity.this,"您点击了" + v.getTag() + "个Item!\n\r"+taobaoGetShop.getShopList(client), Toast.LENGTH_SHORT).show();
+				Toast.makeText(HomeActivity.this,"您点击了" + v.getTag() + "个Item!\n\r"+taobaoGetShop.getShopList(client,userId), Toast.LENGTH_SHORT).show();
 			}
 		});
 	}

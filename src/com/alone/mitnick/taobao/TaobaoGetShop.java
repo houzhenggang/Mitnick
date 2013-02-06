@@ -22,7 +22,7 @@ public class TaobaoGetShop {
 	
 	private String mes;
 	
-	public String getShopList(TopAndroidClient client){
+	public String getShopList(TopAndroidClient client,long userId){
 		TopParameters params = new TopParameters();
 		//API方法
 		params.setMethod("taobao.taobaoke.items.get");
@@ -35,7 +35,7 @@ public class TaobaoGetShop {
 		map.put("cid", "2813");
 		params.setParams(map);
 		
-		client.api(params, null, new TopApiListener() {
+		client.api(params, userId, new TopApiListener() {
 			@Override
 			public void onException(Exception e) {
 				Log.e(Constant.TAG, e.getMessage());
